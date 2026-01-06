@@ -1,0 +1,29 @@
+# Source CSV files (large data files)
+2025-*-germany-case-comments.csv
+
+# Output directory with generated chunks
+notebooklm_chunks/
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+
+# Virtual environments
+venv/
+env/
+ENV/
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS files
+.DS_Store
+Thumbs.db
+
