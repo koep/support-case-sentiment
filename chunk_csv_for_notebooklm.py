@@ -209,10 +209,10 @@ def main():
     """Main execution function."""
     # Use current working directory (works in both host and container)
     work_dir = Path.cwd()
-    csv_files = sorted(work_dir.glob("2025-*-germany-case-comments.csv"))
+    csv_files = sorted(work_dir.glob("2026-*-germany-case-comments.csv"))
     
     if not csv_files:
-        print("No CSV files found matching pattern '2025-*-germany-case-comments.csv'")
+        print("No CSV files found matching pattern '2026-*-germany-case-comments.csv'")
         print(f"Current directory: {work_dir}")
         return
     

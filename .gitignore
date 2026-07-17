@@ -1,8 +1,9 @@
 # Source CSV files (large data files)
-2025-*-germany-case-comments.csv
+*.csv
 
 # Output directory with generated chunks
 notebooklm_chunks/
+archive/
 
 # Python cache
 __pycache__/
