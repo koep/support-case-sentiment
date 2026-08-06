@@ -2,6 +2,41 @@
 
 Converts monthly support case comment CSV exports into NotebookLM-compatible text chunks (under 200 MB and 500,000 words per file).
 
+## Preparing the CSV export from Salesforce
+
+### File naming format
+
+CSV files exported from Salesforce **must** follow this naming convention:
+
+```
+YYYY-MM-country-case-comments.csv
+```
+
+For example:
+
+- `2026-06-germany-case-comments.csv`
+- `2026-07-germany-case-comments.csv`
+- `2025-12-germany-case-comments.csv`
+
+Place the CSV files in the **project root directory** (the same directory as `chunk_csv_for_notebooklm.py` and `run-podman.sh`).
+
+### Export recommendation
+
+When exporting from Salesforce, **export only one month at a time**. Monthly exports keep file sizes manageable and avoid timeouts or memory issues during processing.
+
+Use these Salesforce report filters to scope each export to a single month:
+
+| Filter | Value |
+|---|---|
+| Show | All cases |
+| Date Field | Date/Time Opened |
+| Range | Custom |
+| From | 1/1/2026 |
+| To | 1/31/2026 |
+| Filter Criteria | Account Country equals "Germany" |
+
+Adjust the **From**/**To** dates for each month, then export and name the resulting CSV accordingly (e.g., `2026-01-germany-case-comments.csv` for the example above).
+
 ## Data year filter
 
 The script currently processes only **2026** CSV files. In `chunk_csv_for_notebooklm.py`, the file glob is hardcoded:
