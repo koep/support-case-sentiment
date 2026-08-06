@@ -1,6 +1,11 @@
 notebooklm_chunks/
+archive/
 *.csv
+*.txt
+!requirements.txt
 __pycache__/
 *.pyc
 .pytest_cache/
+.git/
+.gitkeep
 

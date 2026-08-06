@@ -1,9 +1,15 @@
-# Source CSV files (large data files)
+# Data files (real support case data — never commit)
 *.csv
+*.txt
+!requirements.txt
 
 # Output directory with generated chunks
-notebooklm_chunks/
-archive/
+notebooklm_chunks/*
+!notebooklm_chunks/.gitkeep
+
+# Archive directory
+archive/*
+!archive/.gitkeep
 
 # Python cache
 __pycache__/
