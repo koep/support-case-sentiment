@@ -4,21 +4,11 @@ Converts monthly support case comment CSV exports into NotebookLM-compatible tex
 
 ## Preparing the CSV export from Salesforce
 
-### File naming format
+### File naming
 
-CSV files exported from Salesforce **must** follow this naming convention:
+No naming convention required. Drop any CSV export from Salesforce into the **project root directory** (the same directory as `chunk_csv_for_notebooklm.py` and `run-podman.sh`) — the script picks up every `*.csv` file there, regardless of name. A descriptive name (e.g. `2026-06-germany-case-comments.csv`) is still handy for your own organization, since it's used as the base name for the generated output files.
 
-```
-YYYY-MM-country-case-comments.csv
-```
-
-For example:
-
-- `2026-06-germany-case-comments.csv`
-- `2026-07-germany-case-comments.csv`
-- `2025-12-germany-case-comments.csv`
-
-Place the CSV files in the **project root directory** (the same directory as `chunk_csv_for_notebooklm.py` and `run-podman.sh`).
+Files missing the expected Salesforce columns (`Account Name: Account Name`, `Case Comment Number`, `Case Number`, `Case Comment CreatedBy Location`, `Comment Body`) are skipped with a warning instead of causing an error.
 
 ### Export recommendation
 
@@ -36,16 +26,6 @@ Use these Salesforce report filters to scope each export to a single month:
 | Filter Criteria | Account Country equals "Germany" |
 
 Adjust the **From**/**To** dates for each month, then export and name the resulting CSV accordingly (e.g., `2026-01-germany-case-comments.csv` for the example above).
-
-## Data year filter
-
-The script currently processes only **2026** CSV files. In `chunk_csv_for_notebooklm.py`, the file glob is hardcoded:
-
-```python
-csv_files = sorted(work_dir.glob("2026-*-germany-case-comments.csv"))
-```
-
-To process a different year (for example 2025), change `2026` in that pattern to match your CSV filenames, then re-run the script.
 
 ## Data sensitivity
 

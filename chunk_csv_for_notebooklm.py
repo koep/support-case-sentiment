@@ -90,7 +90,19 @@ def process_csv_file(csv_path: Path, output_dir: Path) -> List[Dict]:
     if df is None:
         print(f"  ERROR: Could not read {csv_path.name} with any supported encoding")
         return []
-    
+
+    required_columns = {
+        'Account Name: Account Name',
+        'Case Comment Number',
+        'Case Number',
+        'Case Comment CreatedBy Location',
+        'Comment Body',
+    }
+    missing_columns = required_columns - set(df.columns)
+    if missing_columns:
+        print(f"  SKIPPED: {csv_path.name} is missing expected columns: {', '.join(sorted(missing_columns))}")
+        return []
+
     total_rows = len(df)
     print(f"  Total rows: {total_rows:,}")
     
@@ -209,10 +221,10 @@ def main():
     """Main execution function."""
     # Use current working directory (works in both host and container)
     work_dir = Path.cwd()
-    csv_files = sorted(work_dir.glob("2026-*-germany-case-comments.csv"))
-    
+    csv_files = sorted(work_dir.glob("*.csv"))
+
     if not csv_files:
-        print("No CSV files found matching pattern '2026-*-germany-case-comments.csv'")
+        print("No CSV files found in the current directory")
         print(f"Current directory: {work_dir}")
         return
     

@@ -47,13 +47,7 @@ cd support-case-sentiment
 
 ## Place your CSV files
 
-Copy your Salesforce CSV exports into the project root directory (the folder containing `chunk_csv_for_notebooklm.py`). Files must follow the naming convention described in the main [README](README.md):
-
-```
-YYYY-MM-country-case-comments.csv
-```
-
-For example: `2026-06-germany-case-comments.csv`
+Copy your Salesforce CSV exports into the project root directory (the folder containing `chunk_csv_for_notebooklm.py`). No naming convention required — see the main [README](README.md).
 
 ## Run with the PowerShell script
 
